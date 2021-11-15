@@ -5,7 +5,6 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find params[:id]
-    @comments = Comment.where(book_id: @book).order("created_at DESC")
   end
 
   def new

@@ -1,7 +1,7 @@
 - if current_user.present?
 
   %h1 Edit Comment
-  =form_with model: [@book, @book.comments.build] do |form|
+  =form_for([@book, @comment]) do |form|
     %div
       =form.label :body, class: 'form-label'
       %br
