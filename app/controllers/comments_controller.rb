@@ -15,12 +15,15 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comment = Comment.find params[:id]
+    @book = Book.find params[:book_id]
+    @comment = @book.comments.find params[:id]
   end
 
   def update
-    @comment = Comment.find params[:id]
-    if @comment.update(comment_params)
+    @book = Book.find params[:book_id]
+    @comment = @book.comments.find params[:id]
+    @comment.save
+    if @comment.update(comment_params).permit(:content)
       redirect_to @comment
     else
       render 'edit'

@@ -1,6 +1,6 @@
 - if current_user.present?
-  %br
-  %h2 Add Comment
+
+  %h1 Edit Comment
   =form_with model: [@book, @book.comments.build] do |form|
     %div
       =form.label :body, class: 'form-label'
@@ -8,4 +8,4 @@
       =form.text_area :body, class: 'form-control', row: 5
     %div
       %br
-      =form.submit "Create Comment", class: "btn btn-outline-success"
+      =form.submit "Edit Comment", class: "btn btn-outline-success"
