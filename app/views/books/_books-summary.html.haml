@@ -1,0 +1,12 @@
+%div.book-container.mt-5
+  %h2.header
+    =link_to book.title, book
+
+  - if book.image.present?
+    =image_tag(book.image, class: "book-summary-image")
+
+  %div.body
+    =book.body.truncate(500, seperator: "...")
+    - if book.body.size > 500
+      =link_to "Read More", book
+%hr

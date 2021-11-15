@@ -1,0 +1,13 @@
+- if current_user.present?
+  %br
+  %h2 Add Comment
+  =form_with model: [@book, @book.comments.build] do |form|
+    %div
+      =form.label :body, class: 'form-label'
+      %br
+      =form.text_area :body, class: 'form-control', row: 5
+    %div
+      %br
+      =form.submit "Create Comment", class: "btn btn-outline-success"
+
+

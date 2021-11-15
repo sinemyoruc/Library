@@ -1,0 +1,36 @@
+class CommentsController < ApplicationController
+  def create
+    @book = Book.find params[:book_id]
+    @comment = @book.comments.create(comment_params)
+    @comment.commenter = current_user.email
+    @comment.save
+    redirect_to @book
+  end
+
+  def destroy
+    @book = Book.find params[:book_id]
+    @comment = @book.comments.find params[:id]
+    @comment.destroy
+    redirect_to @book
+  end
+
+  def edit
+    @comment = Comment.find params[:id]
+  end
+
+  def update
+    @comment = Comment.find params[:id]
+    if @comment.update(comment_params)
+      redirect_to @comment
+    else
+      render 'edit'
+    end
+  end
+
+end
+
+private
+def comment_params
+  params.require(:comment).permit(:commenter, :body)
+end
+
